@@ -1,4 +1,6 @@
 'use strict';
+
+var util = require('util');
 var assert = require('assert');
 var knex = require('knex');
 var ripple = require('ripple-lib');
@@ -23,9 +25,12 @@ var defaultLogger = {
 function DatabaseInterface(filePath, logger) {
   assert.strictEqual(typeof filePath, 'string', 'Invalid database path');
 
+  process.EventEmitter.apply(this);
+
   this.initialized = false;
   this.filePath = filePath;
   this.logger = logger || defaultLogger;
+  this.lock = {};
 
   this.db = knex({
     dialect: 'sqlite3',
@@ -67,8 +72,8 @@ function DatabaseInterface(filePath, logger) {
   this.init();
 }
 
+util.inherits(DatabaseInterface, process.EventEmitter);
 
-DatabaseInterface.prototype = new process.EventEmitter();
 var DI = DatabaseInterface.prototype;
 
 /**
@@ -138,6 +143,8 @@ DI.clear = function(callback) {
   .then(function(res) {
     (callback || noop)(null, res);
 
+    self.lock = {};
+
     return res;
   })
   .caught(function(err) {
@@ -198,6 +205,16 @@ DI.saveTransaction = function(transaction, callback) {
     txData.rippled_result = result.engine_result;
   }
 
+  var unlockEvent = 'unlocked:' + txData.client_resource_id;
+
+  if (this.lock[txData.client_resource_id]) {
+    // Force synchronous per-transaction updates
+    this.once(unlockEvent, this.saveTransaction.bind(this, transaction, callback));
+    return;
+  } else {
+    this.lock[txData.client_resource_id] = true;
+  }
+
   var txQuery = {
     source_account: txData.source_account,
     type: txData.type,
@@ -226,6 +243,10 @@ DI.saveTransaction = function(transaction, callback) {
                 + err);
 
     (callback || noop)(err);
+  })
+  .finally(function() {
+    self.lock[txData.client_resource_id] = undefined;
+    self.emit(unlockEvent);
   });
 
   return promise;
