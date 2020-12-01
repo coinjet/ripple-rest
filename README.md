@@ -4,7 +4,7 @@
 
 [![NPM](https://nodei.co/npm/ripple-rest.png)](https://www.npmjs.org/package/ripple-rest)
 
-# Ripple-REST API #
+# Divvy-REST API #
 
 The Ripple-REST API provides a simplified, easy-to-use interface to the Ripple Network via a RESTful API. This page explains how to use the API to send and receive payments on Ripple.
 
