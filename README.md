@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/xdv/divvy-rest.svg?branch=develop)](https://travis-ci.org/xdv/divvy-rest)
-[![Coverage Status](https://coveralls.io/repos/ripple/ripple-rest/badge.png?branch=develop)](https://coveralls.io/r/ripple/ripple-rest?branch=develop)
-[![Code Climate](https://codeclimate.com/github/ripple/ripple-rest.png)](https://codeclimate.com/github/ripple/ripple-rest)
+[![Coverage Status](https://coveralls.io/repos/xdv/divvy-rest/badge.png?branch=develop)](https://coveralls.io/r/xdv/divvy-rest?branch=develop)
+[![Code Climate](https://codeclimate.com/github/xdv/divvy-rest.png)](https://codeclimate.com/github/xdv/divvy-rest)
 
 [![NPM](https://nodei.co/npm/divvy-rest.png)](https://www.npmjs.org/package/divvy-rest)
 
