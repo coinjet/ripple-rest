@@ -1,12 +1,12 @@
-[![Build Status](https://travis-ci.org/ripple/ripple-rest.svg?branch=develop)](https://travis-ci.org/ripple/ripple-rest)
+[![Build Status](https://travis-ci.org/xdv/divvy-rest.svg?branch=develop)](https://travis-ci.org/xdv/divvy-rest)
 [![Coverage Status](https://coveralls.io/repos/ripple/ripple-rest/badge.png?branch=develop)](https://coveralls.io/r/ripple/ripple-rest?branch=develop)
 [![Code Climate](https://codeclimate.com/github/ripple/ripple-rest.png)](https://codeclimate.com/github/ripple/ripple-rest)
 
-[![NPM](https://nodei.co/npm/ripple-rest.png)](https://www.npmjs.org/package/ripple-rest)
+[![NPM](https://nodei.co/npm/divvy-rest.png)](https://www.npmjs.org/package/divvy-rest)
 
-# Ripple-REST API #
+# Divvy-REST API #
 
-The Ripple-REST API provides a simplified, easy-to-use interface to the Ripple Network via a RESTful API. This page explains how to use the API to send and receive payments on Ripple.
+The Divvy-REST API provides a simplified, easy-to-use interface to the Divvy Network via a RESTful API. This page explains how to use the API to send and receive payments on Ripple.
 
 We recommend Ripple-REST for users just getting started with Ripple, since it provides high-level abstractions and convenient simplifications in the data format. If you prefer to access a `rippled` server directly, you can use [rippled's WebSocket or JSON-RPC APIs](https://ripple.com/build/rippled-apis) instead, which provide the full power of Ripple at the cost of more complexity.
 
